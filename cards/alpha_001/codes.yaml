@@ -1,0 +1,115 @@
+cards:
+  - number: CC-A001-001
+    id: cronling
+    name: Cronling
+    type: code
+    faction: coder
+    rarity: common
+    out: 2
+    stab: 4
+    pattern: row
+    ascii:
+      - " /|__|\\"
+      - "(o.  .o)"
+      - "< == >"
+      - ":;;__;;:"
+    text:
+      - "If at least one friendly Item is in this row, this Code gets +1 OUT."
+      - "On Run, deal 1 damage to the mirrored enemy slot."
+    notes: "Basic reliable Coder. First reference Code."
+
+  - number: CC-A001-002
+    id: vibe_bug
+    name: Vibe Bug
+    type: code
+    faction: vibecoder
+    rarity: common
+    out: 3
+    stab: 2
+    pattern: diagonal
+    ascii:
+      - " /|~~|\\"
+      - "(x.  .x)"
+      - "< ?! >"
+      - ":~:    :~: ~>>"
+    text:
+      - "If an Event is diagonal to this Code, this Code gets +2 OUT."
+      - "If no Event is diagonal to this Code, 50% chance: lose 1 STAB after Run."
+    notes: "High output, unstable."
+
+  - number: CC-A001-003
+    id: legacy_brick
+    name: Legacy Brick
+    type: code
+    faction: ki_verweigerer
+    rarity: common
+    out: 1
+    stab: 7
+    pattern: adjacent
+    ascii:
+      - " [____]"
+      - "(-.  .-)"
+      - "< ## >"
+      - ":==:  :==:"
+    text:
+      - "Ignore the first opposing Event effect that would affect this slot."
+      - "If no KI-Noob is adjacent, this Code gets +1 OUT."
+    notes: "Tank and anti-chaos baseline."
+
+  - number: CC-A001-004
+    id: promptling
+    name: Promptling
+    type: code
+    faction: ki_noob
+    rarity: common
+    out: 1
+    stab: 3
+    pattern: adjacent
+    ascii:
+      - " /|oo|\\"
+      - "(^.  .^)"
+      - "< ?! >"
+      - "::.    .::"
+    text:
+      - "If an adjacent Item triggers, gain +1 XP at end of Run."
+      - "If an Event is in this column, reroll this Code's OUT for this Run, result 1..4."
+    notes: "Learner Code. Good for progression tests."
+
+  - number: CC-A001-005
+    id: null_imp
+    name: Null Imp
+    type: code
+    faction: vibecoder
+    rarity: uncommon
+    out: 2
+    stab: 3
+    pattern: column
+    ascii:
+      - "  ^"
+      - " /|~~|\\"
+      - "(x.  .x)"
+      - "< !! >"
+      - ":~:    :~:"
+    text:
+      - "On Run, if this column contains exactly one Item, deal +2 damage to mirrored enemy slot."
+      - "If this Code disables an enemy Code, gain +1 OUT next Run."
+    notes: "First uncommon Code. Aggro with column planning."
+
+  - number: CC-A001-006
+    id: patch_goblin
+    name: Patch Goblin
+    type: code
+    faction: coder
+    rarity: common
+    out: 1
+    stab: 5
+    pattern: adjacent
+    ascii:
+      - " /|__|\\"
+      - "(^.  .^)"
+      - "< ~~ >"
+      - ":;;__;;: +++"
+    text:
+      - "Adjacent friendly Codes get +1 STAB before damage is resolved."
+      - "If Docker is in the same row, this Code gets +1 OUT."
+    notes: "Support Code. Stabilizes early grids."

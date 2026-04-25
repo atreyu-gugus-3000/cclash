@@ -1,0 +1,12 @@
+id: alpha_001
+name: Alpha 001
+version: 0.1.0
+status: draft
+card_count: 12
+numbering:
+  format: CC-A001-###
+  range: CC-A001-001..CC-A001-012
+notes:
+  - First draft set for cclash.
+  - Card numbers are stable identifiers for discussion and balancing.
+  - Card text and balance are intentionally provisional.

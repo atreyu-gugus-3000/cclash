@@ -40,9 +40,16 @@ Design prototype. Rules and architecture are being captured first, then a Python
 
 ```text
 docs/                 rules, styleguide, design notes
-cards/alpha_001/      first card set in YAML
+cardsets/alpha_001/   first card set in YAML
 src/cclash/           Python package, later
 tests/                engine tests, later
+```
+
+## Naming
+
+```text
+cardsets/             game content / card data
+src/cclash/cards/     Python logic for loading and rendering cards
 ```
 
 ## License

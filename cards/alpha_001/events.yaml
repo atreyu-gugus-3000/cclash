@@ -1,0 +1,34 @@
+cards:
+  - number: CC-A001-011
+    id: rotate90
+    name: Rotate90
+    type: event
+    rarity: rare
+    move: rotate90
+    pattern: global
+    ascii:
+      - "[EVT]"
+      - " !90!"
+      - " <()>"
+      - "|rot|"
+    text:
+      - "Rotate your entire grid 90 degrees clockwise."
+      - "If you control Tmux, you may rotate counterclockwise instead."
+    notes: "Big topology card. Rare in first set."
+
+  - number: CC-A001-012
+    id: outer_ring
+    name: Outer Ring
+    type: event
+    rarity: uncommon
+    move: outer_ring_rotate
+    pattern: outer_ring
+    ascii:
+      - "[EVT]"
+      - " !OR!"
+      - " <[]>"
+      - "|rng|"
+    text:
+      - "Rotate the outer ring of your grid by 1 slot clockwise."
+      - "The center slot stays unchanged."
+    notes: "Precise reconfigure. Center-combo friendly."

@@ -34,8 +34,8 @@ cards:
       - ":~:    :~: ~>>"
     text:
       - "If an Event is diagonal to this Code, this Code gets +2 OUT."
-      - "If no Event is diagonal to this Code, 50% chance: lose 1 STAB after Run."
-    notes: "High output, unstable."
+      - "On Run, if no Event is diagonal to this Code, roll W6. On 1-3, lose 1 STAB after Run."
+    notes: "High output, unstable. Uses W6, see docs/randomness_v0_1.md."
 
   - number: CC-A001-003
     id: legacy_brick

@@ -1,0 +1,73 @@
+cards:
+  - number: CC-A001-007
+    id: docker
+    name: Docker
+    type: item
+    family: infra
+    rarity: uncommon
+    uses: 5
+    pattern: row
+    ascii:
+      - "[DKR]"
+      - "/ffx\\"
+      - "\\xss/"
+      - "=row="
+    text:
+      - "All friendly Codes in this row get +1 STAB."
+      - "If a Coder is adjacent to Docker, that Coder gets +1 OUT."
+    notes: "First row enabler."
+
+  - number: CC-A001-008
+    id: tmux
+    name: Tmux
+    type: item
+    family: tooling
+    rarity: common
+    uses: 4
+    pattern: column
+    ascii:
+      - "[TMX]"
+      - "  ^"
+      - "  ||"
+      - "~<>~"
+      - "|col|"
+    text:
+      - "All friendly Codes in this column get +1 OUT."
+      - "If this column contains exactly 2 Codes, both gain Sync."
+      - "Sync: +1 extra damage on Run."
+    notes: "Column enabler. Slightly taller ASCII, acceptable as draft."
+
+  - number: CC-A001-009
+    id: firewall_cloak
+    name: Firewall Cloak
+    type: item
+    family: security
+    rarity: common
+    uses: 3
+    pattern: adjacent
+    ascii:
+      - "[FW]"
+      - "/###\\"
+      - "\\###/"
+      - "+adj+"
+    text:
+      - "The first damage against adjacent friendly Codes is reduced by 1."
+    notes: "Simple defensive Item."
+
+  - number: CC-A001-010
+    id: overclock_chip
+    name: Overclock Chip
+    type: item
+    family: hardware
+    rarity: uncommon
+    uses: 4
+    pattern: diagonal
+    ascii:
+      - "[CLK]"
+      - "/*!*\\"
+      - "\\!!!/"
+      - "diag"
+    text:
+      - "Diagonal friendly Codes get +2 OUT."
+      - "After the Run, those Codes lose 1 STAB."
+    notes: "Highscore and risk Item."

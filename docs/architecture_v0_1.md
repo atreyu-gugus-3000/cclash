@@ -13,7 +13,7 @@ cclash/
 │  ├─ ascii_styleguide.md
 │  ├─ architecture_v0_1.md
 │  └─ roadmap.md
-├─ cards/
+├─ cardsets/
 │  ├─ alpha_001/
 │  │  ├─ set.yaml
 │  │  ├─ codes.yaml
@@ -31,6 +31,13 @@ cclash/
 │     ├─ network/
 │     └─ utils/
 └─ tests/
+```
+
+Naming:
+
+```text
+cardsets/             game content / YAML card data
+src/cclash/cards/     Python logic for loading, validating and rendering cards
 ```
 
 ## 2. Core modules

@@ -1,0 +1,29 @@
+[project]
+name = "cclash"
+version = "0.1.0"
+description = "Terminal-native grid TCG: compile once, reconfigure three times, highest output wins."
+requires-python = ">=3.11"
+readme = "README.md"
+license = {text = "MIT"}
+authors = [
+  {name = "Samuel"}
+]
+dependencies = [
+  "pyyaml>=6.0.1",
+  "rich>=13.7.0"
+]
+
+[project.scripts]
+cclash = "cclash.cli.app:main"
+
+[project.optional-dependencies]
+dev = [
+  "pytest>=8.0.0",
+  "ruff>=0.5.0"
+]
+
+[tool.ruff]
+line-length = 100
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

@@ -89,6 +89,16 @@ def test_shift_row_same_position_is_noop_and_no_history():
         grid.rollback()
 
 
+def test_shift_row_A_to_B_swaps_top_two():
+    grid = make_grid()
+    grid.shift_row("A", "B")
+    assert grid.as_rows() == [
+        ["D", "E", "F"],
+        ["A", "B", "C"],
+        ["G", "H", "I"],
+    ]
+
+
 def test_shift_column_3_to_1_matches_spec():
     grid = make_grid()
     grid.shift_column("3", "1")
@@ -103,6 +113,14 @@ def test_shift_column_invalid_raises():
     grid = make_grid()
     with pytest.raises(ValueError):
         grid.shift_column("4", "1")
+
+
+def test_shift_column_same_position_is_noop_and_no_history():
+    grid = make_grid()
+    grid.shift_column("2", "2")
+    assert grid.as_rows() == DEFAULT_ROWS
+    with pytest.raises(ValueError):
+        grid.rollback()
 
 
 def test_outer_ring_rotate_one_step_matches_spec():
@@ -125,6 +143,21 @@ def test_outer_ring_rotate_does_not_touch_center():
     grid = make_grid()
     grid.outer_ring_rotate(steps=3)
     assert grid["B2"] == "E"
+
+
+def test_outer_ring_rotate_zero_steps_is_noop_and_no_history():
+    grid = make_grid()
+    grid.outer_ring_rotate(steps=0)
+    assert grid.as_rows() == DEFAULT_ROWS
+    with pytest.raises(ValueError):
+        grid.rollback()
+
+
+def test_outer_ring_rotate_eight_steps_is_noop_and_no_history():
+    grid = make_grid()
+    grid.outer_ring_rotate(steps=8)
+    with pytest.raises(ValueError):
+        grid.rollback()
 
 
 def test_swap_adjacent_vertical_matches_spec():
@@ -165,9 +198,43 @@ def test_swap_unknown_position_raises():
         grid.swap_adjacent("A1", "Z9")
 
 
+def test_getitem_unknown_position_raises_value_error():
+    grid = make_grid()
+    with pytest.raises(ValueError):
+        grid["Z9"]
+
+
 def test_rollback_restores_previous_state():
     grid = make_grid()
     grid.rotate90()
+    grid.rollback()
+    assert grid.as_rows() == DEFAULT_ROWS
+
+
+def test_rollback_after_shift_row():
+    grid = make_grid()
+    grid.shift_row("C", "A")
+    grid.rollback()
+    assert grid.as_rows() == DEFAULT_ROWS
+
+
+def test_rollback_after_shift_column():
+    grid = make_grid()
+    grid.shift_column("3", "1")
+    grid.rollback()
+    assert grid.as_rows() == DEFAULT_ROWS
+
+
+def test_rollback_after_outer_ring_rotate():
+    grid = make_grid()
+    grid.outer_ring_rotate(steps=3)
+    grid.rollback()
+    assert grid.as_rows() == DEFAULT_ROWS
+
+
+def test_rollback_after_swap_adjacent():
+    grid = make_grid()
+    grid.swap_adjacent("A2", "B2")
     grid.rollback()
     assert grid.as_rows() == DEFAULT_ROWS
 

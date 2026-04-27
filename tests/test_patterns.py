@@ -5,7 +5,7 @@ from __future__ import annotations
 import pytest
 
 from cclash.core.grid import POSITIONS
-from cclash.core.patterns import affected_fields
+from cclash.core.patterns import PATTERNS, affected_fields
 
 
 def test_self_returns_only_source():
@@ -82,6 +82,11 @@ def test_global_returns_all_positions():
     expected = frozenset(POSITIONS)
     for pos in ("A1", "B2", "C3"):
         assert affected_fields("global", pos) == expected
+
+
+def test_pattern_keys_match_mvp_m2_spec():
+    expected = {"self", "row", "column", "adjacent", "diagonal", "mirror", "global"}
+    assert set(PATTERNS.keys()) == expected
 
 
 def test_unknown_pattern_raises():

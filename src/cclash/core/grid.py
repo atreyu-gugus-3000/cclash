@@ -45,6 +45,8 @@ class Grid:
         return [[self.cells[f"{r}{c}"] for c in COLS] for r in ROWS]
 
     def __getitem__(self, pos: str) -> Any:
+        if pos not in POSITIONS:
+            raise ValueError(f"unknown position: {pos!r}")
         return self.cells[pos]
 
     def _snapshot(self) -> None:
@@ -72,7 +74,7 @@ class Grid:
         self._write_rows(rotated)
 
     def shift_row(self, source: str, target: str) -> None:
-        """Move row ``source`` to position ``target``; other rows shift up."""
+        """Move row ``source`` to index ``target``; remaining rows keep their relative order."""
         if source not in ROWS or target not in ROWS:
             raise ValueError(f"row must be one of {ROWS}")
         if source == target:
@@ -84,7 +86,7 @@ class Grid:
         self._write_rows(rows)
 
     def shift_column(self, source: str, target: str) -> None:
-        """Move column ``source`` to position ``target``; other columns shift up."""
+        """Move column ``source`` to index ``target``; remaining columns keep their relative order."""
         if source not in COLS or target not in COLS:
             raise ValueError(f"column must be one of {COLS}")
         if source == target:
@@ -100,11 +102,15 @@ class Grid:
     def outer_ring_rotate(self, steps: int = 1) -> None:
         """Rotate the outer ring clockwise by ``steps`` positions.
 
-        The center cell ``B2`` is not affected.
+        The center cell ``B2`` is not affected. ``steps`` may be negative
+        (rotates counter-clockwise) and is taken modulo 8; a no-op rotation
+        does not consume rollback history.
         """
-        self._snapshot()
         n = len(OUTER_RING_CW)
         steps = steps % n
+        if steps == 0:
+            return
+        self._snapshot()
         values = [self.cells[p] for p in OUTER_RING_CW]
         rotated = values[-steps:] + values[:-steps]
         for p, v in zip(OUTER_RING_CW, rotated):

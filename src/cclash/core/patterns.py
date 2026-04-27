@@ -4,8 +4,18 @@ Each pattern function takes a source position (``A1..C3``) and returns
 the set of positions affected by that pattern, including the source where
 the rules call for it (``self``, ``row``, ``column``, ``global``).
 
-These patterns are purely geometric. Filtering by faction, card type, or
-ownership belongs in the effect interpreter, not here.
+These patterns are purely geometric primitives. Filtering by faction, card
+type, or ownership belongs in the effect interpreter — the higher-level
+target language from ``docs/card_model.md §6`` (e.g. ``friendly_codes_in_row``,
+``all_friendly_codes``) maps onto these primitives plus a filter.
+
+The set of names matches ``docs/mvp_tasks.md §M2``: ``self``, ``row``,
+``column``, ``adjacent``, ``diagonal``, ``mirror``, ``global``. ``global``
+is the engine-side primitive behind ``all_friendly_codes`` and is not
+itself a card-facing pattern.
+
+Iteration order over the returned ``frozenset`` is unspecified; callers
+that need deterministic order must sort, e.g. by ``POSITIONS`` index.
 """
 
 from __future__ import annotations

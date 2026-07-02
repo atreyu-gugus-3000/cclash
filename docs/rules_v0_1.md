@@ -61,7 +61,9 @@ Items usually have `uses`. When uses reach 0, the Item is burned.
 
 Events are one-shot topology actions. They do not mainly deal damage, they change the grid.
 
-Events are consumed after use.
+Events are consumed after use. Consuming empties the Event's slot first,
+then the move applies to the grid — the freed slot moves with everything
+else. Empty slots stay in play and can be repositioned by later Events.
 
 ## 4. Match flow
 

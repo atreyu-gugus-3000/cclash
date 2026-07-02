@@ -130,6 +130,41 @@ effects:
 
 The engine interprets known effect types only.
 
+### Conditions (v0.1)
+
+`condition` is optional and holds exactly one key. All conditions are
+evaluated on the friendly grid relative to the card's position; row and
+diagonal kinds ignore the source slot itself, `column_items_exactly`
+counts the full column.
+
+```text
+adjacent_faction: <faction>       at least one adjacent Code of that faction
+not_adjacent_faction: <faction>   no adjacent Code of that faction
+row_has_item: true                at least one Item in this row
+diagonal_has_event: true|false    an Event is (not) diagonal to this card
+row_has_card: <card_id>           a specific card is in this row
+column_items_exactly: <n>         this column contains exactly n Items
+```
+
+### Roll clause (v0.1)
+
+`roll` is optional and machine-encodes the W6 patterns from
+`randomness_v0_1.md §3`. The effect fires only when the match W6 lands
+on one of the listed faces; the engine rolls once per evaluation and
+logs every roll.
+
+```yaml
+- trigger: end_of_run
+  condition:
+    diagonal_has_event: false
+  roll:
+    on: [1, 2, 3]       # "on 1-3: effect"
+  effect:
+    type: damage
+    target: self
+    amount: 1
+```
+
 ## 6. Target language
 
 Initial targets:

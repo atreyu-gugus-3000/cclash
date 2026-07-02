@@ -21,6 +21,13 @@ cards:
           type: modify_stab
           target: friendly_codes_in_row
           amount: 1
+      - trigger: item_phase
+        condition:
+          adjacent_faction: coder
+        effect:
+          type: modify_out
+          target: adjacent_coder_codes
+          amount: 1
     notes: "First row enabler."
 
   - number: CC-A001-008
@@ -47,7 +54,10 @@ cards:
           type: modify_out
           target: friendly_codes_in_column
           amount: 1
-    notes: "Column enabler. Slightly taller ASCII, acceptable as draft."
+    notes: >-
+      Column enabler. Slightly taller ASCII, acceptable as draft. Sync
+      (lines 2-3) needs a damage-modifier effect type that is not in the
+      v0.1 whitelist; stays text until the effect language grows.
 
   - number: CC-A001-009
     id: firewall_cloak
@@ -64,6 +74,12 @@ cards:
       - "+adj+"
     text:
       - "The first damage against adjacent friendly Codes is reduced by 1."
+    effects:
+      - trigger: item_phase
+        effect:
+          type: prevent_damage
+          target: friendly_codes_adjacent
+          amount: 1
     notes: "Simple defensive Item."
 
   - number: CC-A001-010
@@ -82,4 +98,15 @@ cards:
     text:
       - "Diagonal friendly Codes get +2 OUT."
       - "After the Run, those Codes lose 1 STAB."
+    effects:
+      - trigger: item_phase
+        effect:
+          type: modify_out
+          target: friendly_codes_diagonal
+          amount: 2
+      - trigger: end_of_run
+        effect:
+          type: damage
+          target: friendly_codes_diagonal
+          amount: 1
     notes: "Highscore and risk Item."

@@ -76,6 +76,19 @@ The engine uses a single `Random` instance per match, seeded from the match ID a
 match_seed = hash(host_player_id, client_player_id, match_id, cardset_hash)
 ```
 
+Training has no client player; its seed uses the literal string
+`"training"` in the client slot:
+
+```text
+training_seed = sha256(player_id | "training" | match_id | cardset_hash)
+```
+
+`cardset_hash` covers every definition field the engine reads, in card
+number order, so any balance change produces a new stream. The engine
+itself only ever receives the final integer seed; deriving it (and
+choosing `match_id`, by default a timestamp) is the caller's job and is
+recorded in the run log so any match can be replayed.
+
 Every W6 roll inside the match draws from the same stream. Order of rolls is deterministic and recorded in the run log.
 
 This means:

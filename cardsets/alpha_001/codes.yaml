@@ -18,6 +18,13 @@ cards:
       - "On Run, deal 1 damage to the mirrored enemy slot."
     effects:
       - trigger: code_execution
+        condition:
+          row_has_item: true
+        effect:
+          type: modify_out
+          target: self
+          amount: 1
+      - trigger: code_execution
         effect:
           type: damage
           target: mirror
@@ -41,6 +48,23 @@ cards:
     text:
       - "If an Event is diagonal to this Code, this Code gets +2 OUT."
       - "On Run, if no Event is diagonal to this Code, roll W6. On 1-3, lose 1 STAB after Run."
+    effects:
+      - trigger: code_execution
+        condition:
+          diagonal_has_event: true
+        effect:
+          type: modify_out
+          target: self
+          amount: 2
+      - trigger: end_of_run
+        condition:
+          diagonal_has_event: false
+        roll:
+          on: [1, 2, 3]
+        effect:
+          type: damage
+          target: self
+          amount: 1
     notes: "High output, unstable. Uses W6, see docs/randomness_v0_1.md."
 
   - number: CC-A001-003
@@ -60,7 +84,17 @@ cards:
     text:
       - "Ignore the first opposing Event effect that would affect this slot."
       - "If no KI-Noob is adjacent, this Code gets +1 OUT."
-    notes: "Tank and anti-chaos baseline."
+    effects:
+      - trigger: code_execution
+        condition:
+          not_adjacent_faction: ki_noob
+        effect:
+          type: modify_out
+          target: self
+          amount: 1
+    notes: >-
+      Tank and anti-chaos baseline. Line 1 (ignore opposing Event) is
+      PvP-only and stays text until opposing Events exist (M8).
 
   - number: CC-A001-004
     id: promptling
@@ -79,7 +113,11 @@ cards:
     text:
       - "If an adjacent Item triggers, gain +1 XP at end of Run."
       - "If an Event is in this column, reroll this Code's OUT for this Run, result 1..4."
-    notes: "Learner Code. Good for progression tests."
+    notes: >-
+      Learner Code. Good for progression tests. Not machine-readable yet:
+      XP needs card instances (M7); the 1..4 reroll conflicts with
+      randomness_v0_1.md §3 (no custom die faces) and needs a rules
+      decision first.
 
   - number: CC-A001-005
     id: null_imp
@@ -99,7 +137,17 @@ cards:
     text:
       - "On Run, if this column contains exactly one Item, deal +2 damage to mirrored enemy slot."
       - "If this Code disables an enemy Code, gain +1 OUT next Run."
-    notes: "First uncommon Code. Aggro with column planning."
+    effects:
+      - trigger: code_execution
+        condition:
+          column_items_exactly: 1
+        effect:
+          type: damage
+          target: mirror
+          amount: 2
+    notes: >-
+      First uncommon Code. Aggro with column planning. Line 2 (on-disable
+      bonus) needs enemy Codes and cross-run tracking; stays text until PvP.
 
   - number: CC-A001-006
     id: patch_goblin
@@ -118,4 +166,17 @@ cards:
     text:
       - "Adjacent friendly Codes get +1 STAB before damage is resolved."
       - "If Docker is in the same row, this Code gets +1 OUT."
+    effects:
+      - trigger: before_damage
+        effect:
+          type: modify_stab
+          target: friendly_codes_adjacent
+          amount: 1
+      - trigger: code_execution
+        condition:
+          row_has_card: docker
+        effect:
+          type: modify_out
+          target: self
+          amount: 1
     notes: "Support Code. Stabilizes early grids."

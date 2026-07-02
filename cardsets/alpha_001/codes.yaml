@@ -16,6 +16,12 @@ cards:
     text:
       - "If at least one friendly Item is in this row, this Code gets +1 OUT."
       - "On Run, deal 1 damage to the mirrored enemy slot."
+    effects:
+      - trigger: code_execution
+        effect:
+          type: damage
+          target: mirror
+          amount: 1
     notes: "Basic reliable Coder. First reference Code."
 
   - number: CC-A001-002

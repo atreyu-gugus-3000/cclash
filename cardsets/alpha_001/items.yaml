@@ -15,6 +15,12 @@ cards:
     text:
       - "All friendly Codes in this row get +1 STAB."
       - "If a Coder is adjacent to Docker, that Coder gets +1 OUT."
+    effects:
+      - trigger: item_phase
+        effect:
+          type: modify_stab
+          target: friendly_codes_in_row
+          amount: 1
     notes: "First row enabler."
 
   - number: CC-A001-008
@@ -35,6 +41,12 @@ cards:
       - "All friendly Codes in this column get +1 OUT."
       - "If this column contains exactly 2 Codes, both gain Sync."
       - "Sync: +1 extra damage on Run."
+    effects:
+      - trigger: item_phase
+        effect:
+          type: modify_out
+          target: friendly_codes_in_column
+          amount: 1
     notes: "Column enabler. Slightly taller ASCII, acceptable as draft."
 
   - number: CC-A001-009
